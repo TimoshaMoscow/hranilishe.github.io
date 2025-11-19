@@ -206,6 +206,7 @@
             height: 180px;
             object-fit: cover;
             display: block;
+            cursor: pointer;
         }
 
         .item-content {
@@ -222,6 +223,51 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.5;
+        }
+
+        /* Кнопка перейти к ресурсу */
+        .item-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .resource-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .resource-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .add-item-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-item-btn:hover {
+            background: var(--primary-dark);
         }
 
         /* Пагинация */
@@ -248,6 +294,69 @@
 
         .pagination button:hover:not(.active) {
             background: rgba(74, 144, 226, 0.1);
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border: 1px solid #ddd;
+            overflow-x: auto;
         }
 
         /* Футер */
@@ -336,6 +445,11 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .item-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -395,6 +509,10 @@
         <section id="items-page" class="page">
             <h1 class="page-title">Все элементы</h1>
             
+            <button class="add-item-btn" id="add-item-btn">
+                <span>+</span> Добавить элемент
+            </button>
+            
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Поиск по названию, описанию или мета-тегам...">
                 <button class="search-btn">Найти</button>
@@ -429,6 +547,47 @@
         </section>
     </main>
 
+    <!-- Модальное окно добавления элемента -->
+    <div class="modal" id="add-item-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Добавление нового элемента</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Инструкция по добавлению элемента:</h3>
+                <ol>
+                    <li>Скопируйте код ниже</li>
+                    <li>Вставьте его в массив <code>items</code> в JavaScript коде</li>
+                    <li>Замените значения плейсхолдеров на свои данные</li>
+                    <li>Сохраните изменения</li>
+                </ol>
+                
+                <div class="code-block" id="item-code-template">
+{
+    id: items.length + 1,
+    title: "Название вашего ресурса",
+    description: "Описание вашего ресурса",
+    image: "images/ваше-изображение.png",
+    tags: ["тег1", "тег2", "тег3"],
+    url: "https://ссылка-на-ресурс.com"
+}</div>
+                
+                <h4>Пояснения к полям:</h4>
+                <ul>
+                    <li><strong>id</strong> - уникальный идентификатор (автоматически увеличивается)</li>
+                    <li><strong>title</strong> - название ресурса</li>
+                    <li><strong>description</strong> - описание ресурса</li>
+                    <li><strong>image</strong> - путь к изображению (рекомендуемый размер: 280x180px)</li>
+                    <li><strong>tags</strong> - массив тегов для поиска и категоризации</li>
+                    <li><strong>url</strong> - ссылка на ресурс (обязательное поле)</li>
+                </ul>
+                
+                <button class="resource-btn" id="copy-code-btn">Скопировать код</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Футер -->
     <footer>
         <div class="footer-container">
@@ -455,35 +614,40 @@
                 title: "Тимошка из Москвы",
                 description: "Начинающий ютубер по майнкрафту.",
                 image: "images/tim.png",
-                tags: ["ютуб", "майнкрафт", "игры", "новичок"]
+                tags: ["ютуб", "майнкрафт", "игры", "новичок"],
+                url: "https://www.youtube.com/channel/UCrjrnsVgcgJJiV4En4ONoDA"
             },
             {
                 id: 2,
                 title: "TAIPrompts",
                 description: "Создавайте идеальные промпты для нейросетей.",
                 image: "images/taiprompts.png",
-                tags: ["промпт", "нейросети", "современность", "вайбкодинг"]
+                tags: ["промпт", "нейросети", "современность", "вайбкодинг"],
+                url: "https://timoshamoscow.github.io/taiprompts.github.io/"
             },
             {
                 id: 3,
                 title: "Сибилевец",
                 description: "Простой, логичный, современный. \nСоздан Тимофеем Сибилевым для лёгкого общения.",
                 image: "images/sib.png",
-                tags: ["лингвистика", "конланг", "простота", "3265"]
+                tags: ["лингвистика", "конланг", "простота", "3265"],
+                url: "https://timoshamoscow.github.io/sibylevec-site.github.io/"
             },
             {
                 id: 4,
                 title: "Белойн",
                 description: "Дышите. Чувствуйте. Живите. \nВне цифрового шума.",
                 image: "images/belyoene.png",
-                tags: ["детокс", "природа", "тишина", "спокойствие"]
+                tags: ["детокс", "природа", "тишина", "спокойствие"],
+                url: "https://timoshamoscow.github.io/belyoene.github.io/"
             },
             {
                 id: 5,
                 title: "Скоро",
                 description: "...",
-                image: "images/",
-                tags: ["скоро", "..."]
+                image: "images/soon.png",
+                tags: ["скоро", "..."],
+                url: "#"
             }
         ];
 
@@ -497,6 +661,11 @@
         const searchButtons = document.querySelectorAll('.search-btn');
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const nav = document.querySelector('nav');
+        const addItemBtn = document.getElementById('add-item-btn');
+        const addItemModal = document.getElementById('add-item-modal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const copyCodeBtn = document.getElementById('copy-code-btn');
+        const itemCodeTemplate = document.getElementById('item-code-template');
 
         // Инициализация приложения
         document.addEventListener('DOMContentLoaded', function() {
@@ -528,15 +697,24 @@
             card.className = 'item-card glass-effect';
             
             card.innerHTML = `
-                <img src="${item.image}" alt="${item.title}" class="item-image">
+                <img src="${item.image}" alt="${item.title}" class="item-image" title="${item.title}">
                 <div class="item-content">
                     <h3 class="item-title">${item.title}</h3>
                     <p class="item-description">${item.description}</p>
                     <div class="item-tags" style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 5px;">
                         ${item.tags.map(tag => `<span style="background: rgba(74, 144, 226, 0.1); padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--primary-dark);">${tag}</span>`).join('')}
                     </div>
+                    <div class="item-actions">
+                        <a href="${item.url}" target="_blank" class="resource-btn">Перейти к ресурсу</a>
+                    </div>
                 </div>
             `;
+            
+            // Добавляем обработчик клика на изображение
+            const image = card.querySelector('.item-image');
+            image.addEventListener('click', () => {
+                window.open(item.url, '_blank');
+            });
             
             return card;
         }
@@ -608,6 +786,34 @@
                 if (window.innerWidth > 768) {
                     nav.style.display = '';
                 }
+            });
+            
+            // Модальное окно добавления элемента
+            addItemBtn.addEventListener('click', () => {
+                addItemModal.classList.add('active');
+            });
+            
+            closeModalBtn.addEventListener('click', () => {
+                addItemModal.classList.remove('active');
+            });
+            
+            // Закрытие модального окна при клике вне его
+            addItemModal.addEventListener('click', (e) => {
+                if (e.target === addItemModal) {
+                    addItemModal.classList.remove('active');
+                }
+            });
+            
+            // Копирование кода
+            copyCodeBtn.addEventListener('click', () => {
+                const codeText = itemCodeTemplate.textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    const originalText = copyCodeBtn.textContent;
+                    copyCodeBtn.textContent = 'Код скопирован!';
+                    setTimeout(() => {
+                        copyCodeBtn.textContent = originalText;
+                    }, 2000);
+                });
             });
         }
 
