@@ -271,6 +271,62 @@
             background: var(--primary-dark);
         }
 
+        /* Стили для категорий */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+
+        .category-card.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .category-items {
+            margin-top: 2rem;
+        }
+
+        .no-items {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
         /* Пагинация */
         .pagination {
             display: flex;
@@ -438,6 +494,10 @@
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
 
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
             .search-container {
                 flex-direction: column;
             }
@@ -455,6 +515,10 @@
 
         @media (max-width: 480px) {
             .items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .categories-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -531,7 +595,15 @@
         <!-- Страница категорий -->
         <section id="categories-page" class="page">
             <h1 class="page-title">Категории</h1>
-            <p>Страница категорий находится в разработке. Здесь будет представлена система категоризации элементов по типам и мета-тегам.</p>
+            <p>Выберите категорию для просмотра соответствующих элементов:</p>
+            
+            <div class="categories-grid" id="categories-container">
+                <!-- Категории будут загружены через JS -->
+            </div>
+            
+            <div class="category-items" id="category-items-container">
+                <!-- Элементы выбранной категории будут загружены здесь -->
+            </div>
         </section>
 
         <!-- Страница "О проекте" -->
@@ -676,12 +748,38 @@
         const closeModalBtn = document.querySelector('.close-modal');
         const copyCodeBtn = document.getElementById('copy-code-btn');
         const itemCodeTemplate = document.getElementById('item-code-template');
+        const categoriesContainer = document.getElementById('categories-container');
+        const categoryItemsContainer = document.getElementById('category-items-container');
+
+        // Иконки для категорий
+        const categoryIcons = {
+            "ютуб": "📺",
+            "майнкрафт": "⚔️",
+            "игры": "🎮",
+            "новичок": "🆕",
+            "промпт": "💬",
+            "нейросети": "🧠",
+            "современность": "⚡",
+            "вайбкодинг": "💻",
+            "лингвистика": "🔤",
+            "конланг": "🌐",
+            "простота": "✨",
+            "детокс": "🌿",
+            "природа": "🏞️",
+            "тишина": "🔇",
+            "спокойствие": "😌",
+            "вопрос": "❓",
+            "ответ": "💡",
+            "сленг": "🗣️",
+            "скоро": "⏳"
+        };
 
         // Инициализация приложения
         document.addEventListener('DOMContentLoaded', function() {
             renderFeaturedItems();
             renderAllItems();
             setupPagination();
+            renderCategories();
             setupEventListeners();
         });
 
@@ -727,6 +825,69 @@
             });
             
             return card;
+        }
+
+        // Рендер категорий
+        function renderCategories() {
+            categoriesContainer.innerHTML = '';
+            
+            // Получаем все уникальные теги
+            const allTags = [...new Set(items.flatMap(item => item.tags))];
+            
+            allTags.forEach(tag => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card glass-effect';
+                categoryCard.dataset.tag = tag;
+                
+                const itemsCount = items.filter(item => item.tags.includes(tag)).length;
+                const icon = categoryIcons[tag] || '🏷️';
+                
+                categoryCard.innerHTML = `
+                    <div class="category-icon">${icon}</div>
+                    <div class="category-name">${tag}</div>
+                    <div class="category-count">${itemsCount} элемент${itemsCount === 1 ? '' : itemsCount > 4 ? 'ов' : 'а'}</div>
+                `;
+                
+                categoryCard.addEventListener('click', () => {
+                    // Убираем активный класс у всех категорий
+                    document.querySelectorAll('.category-card').forEach(card => {
+                        card.classList.remove('active');
+                    });
+                    
+                    // Добавляем активный класс к выбранной категории
+                    categoryCard.classList.add('active');
+                    
+                    // Показываем элементы выбранной категории
+                    showCategoryItems(tag);
+                });
+                
+                categoriesContainer.appendChild(categoryCard);
+            });
+        }
+
+        // Показать элементы категории
+        function showCategoryItems(tag) {
+            const filteredItems = items.filter(item => item.tags.includes(tag));
+            
+            if (filteredItems.length === 0) {
+                categoryItemsContainer.innerHTML = `
+                    <div class="no-items">
+                        <h3>В категории "${tag}" пока нет элементов</h3>
+                        <p>Добавьте элементы с тегом "${tag}" чтобы они появились здесь</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            categoryItemsContainer.innerHTML = `
+                <h3>Элементы в категории "${tag}"</h3>
+                <div class="items-grid" id="category-items-grid"></div>
+            `;
+            
+            const categoryItemsGrid = document.getElementById('category-items-grid');
+            filteredItems.forEach(item => {
+                categoryItemsGrid.appendChild(createItemCard(item));
+            });
         }
 
         // Настройка пагинации
