@@ -99,7 +99,7 @@
         }
 
         nav a:hover, nav a.active {
-            color: #3B82F6; /* Ярко-синий */
+            color: #3B82F6;
             background-color: rgba(59, 130, 246, 0.1);
         }
 
@@ -181,37 +181,6 @@
             background: var(--primary-dark);
         }
 
-        /* Расширенный поиск */
-        .advanced-search {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .search-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .search-option {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .search-option input {
-            margin: 0;
-        }
-
-        .search-results-info {
-            margin: 1rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
         /* Сетка элементов */
         .items-grid {
             display: grid;
@@ -226,7 +195,6 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
         }
 
         .item-card:hover {
@@ -256,38 +224,6 @@
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.5;
-        }
-
-        /* Индикатор популярности */
-        .popularity-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            box-shadow: 0 2px 8px rgba(255, 165, 0, 0.3);
-        }
-
-        .popularity-stars {
-            display: flex;
-            gap: 2px;
-        }
-
-        .star {
-            color: #FFD700;
-            font-size: 0.9rem;
-        }
-
-        .views-count {
-            font-size: 0.75rem;
-            opacity: 0.9;
         }
 
         /* Кнопка перейти к ресурсу */
@@ -566,11 +502,6 @@
                 flex-direction: column;
             }
 
-            .search-options {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
             .footer-links {
                 flex-direction: column;
                 gap: 1rem;
@@ -633,9 +564,9 @@
                 <button class="search-btn">Найти</button>
             </div>
             
-            <h2>🔥 Популярные элементы</h2>
+            <h2>Избранные элементы</h2>
             <div class="items-grid" id="featured-items">
-                <!-- Популярные элементы будут загружены через JS -->
+                <!-- Избранные элементы будут загружены через JS -->
             </div>
         </section>
 
@@ -647,32 +578,9 @@
                 <span>+</span> Добавить элемент
             </button>
             
-            <!-- Расширенный поиск -->
-            <div class="advanced-search glass-effect">
-                <h3>🔍 Расширенный поиск</h3>
-                <div class="search-container">
-                    <input type="text" class="search-input" id="advanced-search-input" placeholder="Введите запрос для поиска...">
-                    <button class="search-btn" id="advanced-search-btn">Найти</button>
-                </div>
-                <div class="search-options">
-                    <div class="search-option">
-                        <input type="checkbox" id="search-titles" checked>
-                        <label for="search-titles">Искать в названиях</label>
-                    </div>
-                    <div class="search-option">
-                        <input type="checkbox" id="search-descriptions" checked>
-                        <label for="search-descriptions">Искать в описаниях</label>
-                    </div>
-                    <div class="search-option">
-                        <input type="checkbox" id="search-tags" checked>
-                        <label for="search-tags">Искать в тегах</label>
-                    </div>
-                    <div class="search-option">
-                        <input type="checkbox" id="search-fuzzy">
-                        <label for="search-fuzzy">Нечеткий поиск</label>
-                    </div>
-                </div>
-                <div class="search-results-info" id="search-results-info"></div>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Поиск по названию, описанию или мета-тегам...">
+                <button class="search-btn">Найти</button>
             </div>
             
             <div class="items-grid" id="all-items">
@@ -735,10 +643,7 @@
     description: "Описание вашего ресурса",
     image: "images/ваше-изображение.png",
     tags: ["тег1", "тег2", "тег3"],
-    url: "https://ссылка-на-ресурс.com",
-    views: 0,
-    clicks: 0,
-    rating: 0
+    url: "https://ссылка-на-ресурс.com"
 }</div>
                 
                 <h4>Пояснения к полям:</h4>
@@ -749,9 +654,6 @@
                     <li><strong>image</strong> - путь к изображению (рекомендуемый размер: 280x180px)</li>
                     <li><strong>tags</strong> - массив тегов для поиска и категоризации</li>
                     <li><strong>url</strong> - ссылка на ресурс (обязательное поле)</li>
-                    <li><strong>views</strong> - количество просмотров (автоматически обновляется)</li>
-                    <li><strong>clicks</strong> - количество переходов (автоматически обновляется)</li>
-                    <li><strong>rating</strong> - рейтинг элемента (от 0 до 5)</li>
                 </ul>
                 
                 <button class="resource-btn" id="copy-code-btn">Скопировать код</button>
@@ -760,36 +662,32 @@
     </div>
 
     <!-- Футер -->
-    <footer>
-        <div class="footer-container">
-            <div class="logo">
-                <span class="logo-icon">📁</span>
-                Хранилище
-            </div>
-            <div class="footer-links">
-                <a href="#privacy">Политика конфиденциальности</a>
-                <a href="#terms">Условия использования</a>
-                <a href="#contact">Контакты</a>
-            </div>
-            <div class="copyright">
-                &copy; 2025 Хранилище с мета-тегами. Все права защищены.
-            </div>
+<footer>
+    <div class="footer-container">
+        <div class="logo">
+            <span class="logo-icon">📁</span>
+            Хранилище
         </div>
-    </footer>
+        <div class="footer-links">
+            <a href="privacy.html">Политика конфиденциальности</a>
+            <a href="terms.html">Условия использования</a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Хранилище с мета-тегами. Все права защищены.
+        </div>
+    </div>
+</footer>
 
     <script>
         // Данные элементов
-        let items = [
+        const items = [
             {
                 id: 1,
                 title: "Тимошка из Москвы",
                 description: "Начинающий ютубер по майнкрафту.",
                 image: "images/tim.png",
                 tags: ["ютуб", "майнкрафт", "игры", "новичок"],
-                url: "https://www.youtube.com/channel/UCrjrnsVgcgJJiV4En4ONoDA",
-                views: 5173,
-                clicks: 2986,
-                rating: 4.9
+                url: "https://www.youtube.com/channel/UCrjrnsVgcgJJiV4En4ONoDA"
             },
             {
                 id: 2,
@@ -797,10 +695,7 @@
                 description: "Создавайте идеальные промпты для нейросетей.",
                 image: "images/taiprompts.png",
                 tags: ["промпт", "нейросети", "современность", "вайбкодинг"],
-                url: "https://timoshamoscow.github.io/taiprompts.github.io/",
-                views: 3200,
-                clicks: 1298,
-                rating: 4.0
+                url: "https://timoshamoscow.github.io/taiprompts.github.io/"
             },
             {
                 id: 3,
@@ -808,10 +703,7 @@
                 description: "Простой, логичный, современный. Создан Тимофеем Сибилевым для лёгкого общения.",
                 image: "images/sib.png",
                 tags: ["лингвистика", "конланг", "простота", "3265"],
-                url: "https://timoshamoscow.github.io/sibylevec-site.github.io/",
-                views: 1111,
-                clicks: 647,
-                rating: 4.5
+                url: "https://timoshamoscow.github.io/sibylevec-site.github.io/"
             },
             {
                 id: 4,
@@ -819,10 +711,7 @@
                 description: "Дышите. Чувствуйте. Живите. Вне цифрового шума.",
                 image: "images/belyoene.png",
                 tags: ["детокс", "природа", "тишина", "спокойствие"],
-                url: "https://timoshamoscow.github.io/belyoene.github.io/",
-                views: 180,
-                clicks: 52,
-                rating: 4.3
+                url: "https://timoshamoscow.github.io/belyoene.github.io/"
             },
             {
                 id: 5,
@@ -830,32 +719,23 @@
                 description: "Хули - это сленговое слово. СЛЕНГ - это не МАТ.",
                 image: "images/hmm.png",
                 tags: ["вопрос", "ответ", "сленг"],
-                url: "https://sadalskij.livejournal.com/2845249.html",
-                views: 95000,
-                clicks: 70000,
-                rating: 5.0
+                url: "https://sadalskij.livejournal.com/2845249.html"
             },
             {
                 id: 6,
                 title: "Скоро",
                 description: "...",
                 image: "images/soon.png",
-                tags: ["скоро", "...", "", ""],
-                url: "#",
-                views: 80,
-                clicks: 5,
-                rating: 1.6
+                tags: ["скоро", "..."],
+                url: "#"
             },
             {
                 id: 7,
                 title: "Скоро",
                 description: "...",
                 image: "images/soon.png",
-                tags: ["скоро", "...", "", ""],
-                url: "#",
-                views: 19,
-                clicks: 6,
-                rating: 1.4
+                tags: ["скоро", "..."],
+                url: "#"
             },
             {
                 id: 8,
@@ -863,10 +743,7 @@
                 description: "...",
                 image: "images/soon.png",
                 tags: ["скоро", "..."],
-                url: "#",
-                views: 4,
-                clicks: 2,
-                rating: 0
+                url: "#"
             }
         ];
 
@@ -887,14 +764,11 @@
         const itemCodeTemplate = document.getElementById('item-code-template');
         const categoriesContainer = document.getElementById('categories-container');
         const categoryItemsContainer = document.getElementById('category-items-container');
-        const advancedSearchInput = document.getElementById('advanced-search-input');
-        const advancedSearchBtn = document.getElementById('advanced-search-btn');
-        const searchResultsInfo = document.getElementById('search-results-info');
 
         // Обобщенные категории
         const generalCategories = {
             "🎮 Игры": {
-                tags: ["игры", "майнкрафт", "minecraft", "dota", "dota2", "гейминг", "игровой", "геймер"],
+                tags: ["игры", "майнкрафт", "minecraft", "гейминг", "игровой", "геймер"],
                 icon: "🎮",
                 description: "Игровые ресурсы, гайды и сообщества"
             },
@@ -932,7 +806,6 @@
 
         // Инициализация приложения
         document.addEventListener('DOMContentLoaded', function() {
-            loadPopularityData();
             renderFeaturedItems();
             renderAllItems();
             setupPagination();
@@ -940,190 +813,23 @@
             setupEventListeners();
         });
 
-        // Загрузка данных популярности из localStorage
-        function loadPopularityData() {
-            const savedItems = localStorage.getItem('popularItems');
-            if (savedItems) {
-                const parsedItems = JSON.parse(savedItems);
-                items = items.map(item => {
-                    const savedItem = parsedItems.find(saved => saved.id === item.id);
-                    if (savedItem) {
-                        return {
-                            ...item,
-                            views: savedItem.views || item.views,
-                            clicks: savedItem.clicks || item.clicks,
-                            rating: savedItem.rating || item.rating
-                        };
-                    }
-                    return item;
-                });
-            }
+        // Получение избранных элементов (первые 3)
+        function getFeaturedItems() {
+            return items.slice(0, 3);
         }
 
-        // Сохранение данных популярности в localStorage
-        function savePopularityData() {
-            const popularityData = items.map(item => ({
-                id: item.id,
-                views: item.views,
-                clicks: item.clicks,
-                rating: item.rating
-            }));
-            localStorage.setItem('popularItems', JSON.stringify(popularityData));
-        }
-
-        // Получение популярных элементов
-        function getPopularItems() {
-            return items
-                .sort((a, b) => {
-                    const scoreA = (a.views * 0.4) + (a.clicks * 0.3) + (a.rating * 30);
-                    const scoreB = (b.views * 0.4) + (b.clicks * 0.3) + (b.rating * 30);
-                    return scoreB - scoreA;
-                })
-                .slice(0, 3);
-        }
-
-        // Улучшенная функция поиска
-        function performAdvancedSearch(query, options = {}) {
-            const {
-                searchTitles = true,
-                searchDescriptions = true,
-                searchTags = true,
-                fuzzySearch = false
-            } = options;
-
+        // Простая функция поиска
+        function performSearch(query) {
             if (!query.trim()) {
                 return items;
             }
 
-            const lowerQuery = query.toLowerCase().trim();
-            const queryWords = lowerQuery.split(/\s+/).filter(word => word.length > 0);
-
-            return items.filter(item => {
-                let score = 0;
-
-                // Поиск в названиях
-                if (searchTitles) {
-                    const title = item.title.toLowerCase();
-                    if (fuzzySearch) {
-                        score += calculateFuzzyScore(title, queryWords);
-                    } else {
-                        if (queryWords.some(word => title.includes(word))) {
-                            score += 3; // Высокий вес для названий
-                        }
-                    }
-                }
-
-                // Поиск в описаниях
-                if (searchDescriptions) {
-                    const description = item.description.toLowerCase();
-                    if (fuzzySearch) {
-                        score += calculateFuzzyScore(description, queryWords) * 0.5;
-                    } else {
-                        if (queryWords.some(word => description.includes(word))) {
-                            score += 1; // Средний вес для описаний
-                        }
-                    }
-                }
-
-                // Поиск в тегах
-                if (searchTags) {
-                    const tags = item.tags.map(tag => tag.toLowerCase());
-                    if (fuzzySearch) {
-                        score += calculateFuzzyScore(tags.join(' '), queryWords) * 2;
-                    } else {
-                        if (tags.some(tag => queryWords.some(word => tag.includes(word)))) {
-                            score += 2; // Высокий вес для тегов
-                        }
-                    }
-                }
-
-                return score > 0;
-            }).sort((a, b) => {
-                // Сортировка по релевантности
-                const scoreA = calculateRelevanceScore(a, queryWords, options);
-                const scoreB = calculateRelevanceScore(b, queryWords, options);
-                return scoreB - scoreA;
-            });
-        }
-
-        // Расчет нечеткого соответствия
-        function calculateFuzzyScore(text, queryWords) {
-            let score = 0;
-            queryWords.forEach(word => {
-                if (text.includes(word)) {
-                    score += 3; // Точное совпадение
-                } else if (word.length > 3) {
-                    // Частичное совпадение для длинных слов
-                    for (let i = 0; i <= text.length - word.length; i++) {
-                        const substring = text.substring(i, i + word.length);
-                        if (calculateSimilarity(substring, word) > 0.7) {
-                            score += 2;
-                            break;
-                        }
-                    }
-                }
-            });
-            return score;
-        }
-
-        // Расчет схожести строк (алгоритм Левенштейна)
-        function calculateSimilarity(a, b) {
-            const longer = a.length > b.length ? a : b;
-            const shorter = a.length > b.length ? b : a;
-            
-            if (longer.length === 0) return 1.0;
-            
-            return (longer.length - calculateEditDistance(longer, shorter)) / parseFloat(longer.length);
-        }
-
-        function calculateEditDistance(a, b) {
-            if (a.length === 0) return b.length;
-            if (b.length === 0) return a.length;
-
-            const matrix = [];
-
-            for (let i = 0; i <= b.length; i++) {
-                matrix[i] = [i];
-            }
-
-            for (let j = 0; j <= a.length; j++) {
-                matrix[0][j] = j;
-            }
-
-            for (let i = 1; i <= b.length; i++) {
-                for (let j = 1; j <= a.length; j++) {
-                    if (b.charAt(i-1) === a.charAt(j-1)) {
-                        matrix[i][j] = matrix[i-1][j-1];
-                    } else {
-                        matrix[i][j] = Math.min(
-                            matrix[i-1][j-1] + 1,
-                            matrix[i][j-1] + 1,
-                            matrix[i-1][j] + 1
-                        );
-                    }
-                }
-            }
-
-            return matrix[b.length][a.length];
-        }
-
-        // Расчет общей релевантности
-        function calculateRelevanceScore(item, queryWords, options) {
-            let score = 0;
-            const title = item.title.toLowerCase();
-            const description = item.description.toLowerCase();
-            const tags = item.tags.map(tag => tag.toLowerCase());
-
-            queryWords.forEach(word => {
-                if (options.searchTitles && title.includes(word)) score += 3;
-                if (options.searchDescriptions && description.includes(word)) score += 1;
-                if (options.searchTags && tags.some(tag => tag.includes(word))) score += 2;
-                
-                // Бонус за популярность
-                score += (item.views / 1000) + (item.rating / 2);
-            });
-
-            return score;
+            const lowerQuery = query.toLowerCase();
+            return items.filter(item => 
+                item.title.toLowerCase().includes(lowerQuery) ||
+                item.description.toLowerCase().includes(lowerQuery) ||
+                item.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+            );
         }
 
         // Рендер обобщенных категорий
@@ -1192,67 +898,16 @@
             
             const categoryItemsGrid = document.getElementById('category-items-grid');
             filteredItems.forEach(item => {
-                incrementViews(item.id);
                 categoryItemsGrid.appendChild(createItemCard(item));
             });
-        }
-
-        // Остальные функции (createItemCard, incrementViews, incrementClicks, etc.) остаются без изменений
-        // [Для экономии места оставлю их реализацию как в предыдущем коде]
-
-        // Увеличение счетчика просмотров
-        function incrementViews(itemId) {
-            const item = items.find(item => item.id === itemId);
-            if (item) {
-                item.views++;
-                savePopularityData();
-            }
-        }
-
-        // Увеличение счетчика кликов
-        function incrementClicks(itemId) {
-            const item = items.find(item => item.id === itemId);
-            if (item) {
-                item.clicks++;
-                savePopularityData();
-            }
-        }
-
-        // Получение уровня популярности
-        function getPopularityLevel(item) {
-            const score = (item.views * 0.4) + (item.clicks * 0.3) + (item.rating * 30);
-            
-            if (score > 200) return 5;
-            if (score > 150) return 4;
-            if (score > 100) return 3;
-            if (score > 50) return 2;
-            return 1;
-        }
-
-        // Создание HTML для бейджа популярности
-        function createPopularityBadge(item) {
-            const level = getPopularityLevel(item);
-            const stars = '★'.repeat(level) + '☆'.repeat(5 - level);
-            
-            return `
-                <div class="popularity-badge">
-                    <div class="popularity-stars">
-                        ${stars.split('').map(star => 
-                            `<span class="star">${star}</span>`
-                        ).join('')}
-                    </div>
-                    <div class="views-count">${item.views} просмотров</div>
-                </div>
-            `;
         }
 
         // Рендер избранных элементов
         function renderFeaturedItems() {
             featuredItemsContainer.innerHTML = '';
-            const popularItems = getPopularItems();
+            const featuredItems = getFeaturedItems();
             
-            popularItems.forEach(item => {
-                incrementViews(item.id);
+            featuredItems.forEach(item => {
                 featuredItemsContainer.appendChild(createItemCard(item));
             });
         }
@@ -1261,16 +916,8 @@
         function renderAllItems(filteredItems = items) {
             allItemsContainer.innerHTML = '';
             filteredItems.forEach(item => {
-                incrementViews(item.id);
                 allItemsContainer.appendChild(createItemCard(item));
             });
-            
-            // Обновляем информацию о результатах
-            if (filteredItems !== items) {
-                searchResultsInfo.textContent = `Найдено ${filteredItems.length} элемент${filteredItems.length === 1 ? '' : filteredItems.length > 4 ? 'ов' : 'а'}`;
-            } else {
-                searchResultsInfo.textContent = `Всего ${items.length} элемент${items.length === 1 ? '' : items.length > 4 ? 'ов' : 'а'}`;
-            }
         }
 
         // Создание карточки элемента
@@ -1278,10 +925,7 @@
             const card = document.createElement('div');
             card.className = 'item-card glass-effect';
             
-            const popularityBadge = createPopularityBadge(item);
-            
             card.innerHTML = `
-                ${popularityBadge}
                 <img src="${item.image}" alt="${item.title}" class="item-image" title="${item.title}">
                 <div class="item-content">
                     <h3 class="item-title">${item.title}</h3>
@@ -1290,20 +934,14 @@
                         ${item.tags.map(tag => `<span style="background: rgba(74, 144, 226, 0.1); padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; color: var(--primary-dark);">${tag}</span>`).join('')}
                     </div>
                     <div class="item-actions">
-                        <a href="${item.url}" target="_blank" class="resource-btn" data-item-id="${item.id}">Перейти к ресурсу</a>
+                        <a href="${item.url}" target="_blank" class="resource-btn">Перейти к ресурсу</a>
                     </div>
                 </div>
             `;
             
             const image = card.querySelector('.item-image');
             image.addEventListener('click', () => {
-                incrementClicks(item.id);
                 window.open(item.url, '_blank');
-            });
-            
-            const button = card.querySelector('.resource-btn');
-            button.addEventListener('click', (e) => {
-                incrementClicks(item.id);
             });
             
             return card;
@@ -1348,57 +986,23 @@
                 });
             });
             
-            // Простой поиск
+            // Поиск
             searchButtons.forEach((button, index) => {
-                if (button.id !== 'advanced-search-btn') {
-                    button.addEventListener('click', () => {
-                        const query = searchInputs[index].value;
-                        const filteredItems = performAdvancedSearch(query, {
-                            searchTitles: true,
-                            searchDescriptions: true,
-                            searchTags: true,
-                            fuzzySearch: false
-                        });
+                button.addEventListener('click', () => {
+                    const query = searchInputs[index].value;
+                    const filteredItems = performSearch(query);
+                    renderAllItems(filteredItems);
+                });
+            });
+            
+            searchInputs.forEach(input => {
+                input.addEventListener('keyup', (e) => {
+                    if (e.key === 'Enter') {
+                        const query = input.value;
+                        const filteredItems = performSearch(query);
                         renderAllItems(filteredItems);
-                    });
-                }
-            });
-            
-            searchInputs.forEach((input, index) => {
-                if (input.id !== 'advanced-search-input') {
-                    input.addEventListener('keyup', (e) => {
-                        if (e.key === 'Enter') {
-                            const query = input.value;
-                            const filteredItems = performAdvancedSearch(query, {
-                                searchTitles: true,
-                                searchDescriptions: true,
-                                searchTags: true,
-                                fuzzySearch: false
-                            });
-                            renderAllItems(filteredItems);
-                        }
-                    });
-                }
-            });
-            
-            // Расширенный поиск
-            advancedSearchBtn.addEventListener('click', () => {
-                const query = advancedSearchInput.value;
-                const options = {
-                    searchTitles: document.getElementById('search-titles').checked,
-                    searchDescriptions: document.getElementById('search-descriptions').checked,
-                    searchTags: document.getElementById('search-tags').checked,
-                    fuzzySearch: document.getElementById('search-fuzzy').checked
-                };
-                
-                const filteredItems = performAdvancedSearch(query, options);
-                renderAllItems(filteredItems);
-            });
-            
-            advancedSearchInput.addEventListener('keyup', (e) => {
-                if (e.key === 'Enter') {
-                    advancedSearchBtn.click();
-                }
+                    }
+                });
             });
             
             // Мобильное меню
