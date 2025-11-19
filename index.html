@@ -416,6 +416,257 @@
             overflow-x: auto;
         }
 
+        /* Стили для улучшенного модального окна */
+        .add-item-tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary-color);
+            background-color: rgba(74, 144, 226, 0.05);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-content strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .step-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-box h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .code-container {
+            margin: 1.5rem 0;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2d3748;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .fields-explanation {
+            margin-top: 2rem;
+        }
+
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .field-item {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-light);
+        }
+
+        .field-item strong {
+            display: block;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .field-item span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-header h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-header p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            margin: 2rem 0;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+        }
+
+        .contact-content strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .contact-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .contact-content small {
+            color: var(--text-secondary);
+        }
+
+        .submission-guide {
+            text-align: left;
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .submission-guide h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .benefits {
+            margin-top: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 1.5rem;
+        }
+
         /* Футер */
         footer {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
@@ -511,6 +762,31 @@
                 flex-direction: column;
                 gap: 10px;
             }
+
+            .add-item-tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                padding: 1rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fields-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-method {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -528,6 +804,10 @@
             
             .page-title {
                 font-size: 1.6rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -628,17 +908,64 @@
                 <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
-                <h3>Инструкция по добавлению элемента:</h3>
-                <ol>
-                    <li>Скопируйте код ниже</li>
-                    <li>Вставьте его в массив <code>items</code> в JavaScript коде</li>
-                    <li>Замените значения плейсхолдеров на свои данные</li>
-                    <li>Сохраните изменения</li>
-                    <li>-------------------</li>
-                    <li>Если хотите добавить вашу информацию на оригинальный сайт, пишите администратору: roll3ogurec0@gmail.com (Тимофей)</li>
-                </ol>
-                
-                <div class="code-block" id="item-code-template">
+                <div class="add-item-tabs">
+                    <button class="tab-btn active" data-tab="instructions">📋 Инструкция</button>
+                    <button class="tab-btn" data-tab="template">⚙️ Шаблон</button>
+                    <button class="tab-btn" data-tab="contact">📧 Контакты</button>
+                </div>
+
+                <!-- Вкладка инструкций -->
+                <div class="tab-content active" id="instructions-tab">
+                    <h3>Как добавить элемент в локальную версию:</h3>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Скопируйте шаблон</strong>
+                                <p>Перейдите во вкладку "Шаблон" и скопируйте готовый код</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Настройте данные</strong>
+                                <p>Замените плейсхолдеры на вашу информацию</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>Добавьте в код</strong>
+                                <p>Вставьте элемент в массив <code>items</code> в файле index.html</p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <strong>Сохраните изменения</strong>
+                                <p>Обновите страницу чтобы увидеть новый элемент</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>💡 Важная информация:</h4>
+                        <p>Этот функционал работает только в локальной версии сайта. Изменения будут видны только вам.</p>
+                        <p><strong>Чтобы добавить элемент на основной сайт</strong> - свяжитесь с администратором через вкладку "Контакты".</p>
+                    </div>
+                </div>
+
+                <!-- Вкладка шаблона -->
+                <div class="tab-content" id="template-tab">
+                    <h3>Готовый шаблон для копирования:</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>Код элемента</span>
+                            <button class="copy-btn" id="copy-code-btn" title="Скопировать код">
+                                📋 Копировать
+                            </button>
+                        </div>
+                        <div class="code-block" id="item-code-template">
 {
     id: items.length + 1,
     title: "Название вашего ресурса",
@@ -647,38 +974,97 @@
     tags: ["тег1", "тег2", "тег3"],
     url: "https://ссылка-на-ресурс.com"
 }</div>
-                
-                <h4>Пояснения к полям:</h4>
-                <ul>
-                    <li><strong>id</strong> - уникальный идентификатор (автоматически увеличивается)</li>
-                    <li><strong>title</strong> - название ресурса</li>
-                    <li><strong>description</strong> - описание ресурса</li>
-                    <li><strong>image</strong> - путь к изображению (рекомендуемый размер: 280x180px)</li>
-                    <li><strong>tags</strong> - массив тегов для поиска и категоризации</li>
-                    <li><strong>url</strong> - ссылка на ресурс (обязательное поле)</li>
-                </ul>
-                
-                <button class="resource-btn" id="copy-code-btn">Скопировать код</button>
+                    </div>
+
+                    <div class="fields-explanation">
+                        <h4>📖 Пояснения к полям:</h4>
+                        <div class="fields-grid">
+                            <div class="field-item">
+                                <strong>id</strong>
+                                <span>Уникальный номер (автоматически увеличивается)</span>
+                            </div>
+                            <div class="field-item">
+                                <strong>title</strong>
+                                <span>Название ресурса (максимум 60 символов)</span>
+                            </div>
+                            <div class="field-item">
+                                <strong>description</strong>
+                                <span>Краткое описание (рекомендуется 120-180 символов)</span>
+                            </div>
+                            <div class="field-item">
+                                <strong>image</strong>
+                                <span>Путь к изображению (формат: PNG/JPG, размер: 280×180px)</span>
+                            </div>
+                            <div class="field-item">
+                                <strong>tags</strong>
+                                <span>Массив тегов для поиска (3-5 релевантных тегов)</span>
+                            </div>
+                            <div class="field-item">
+                                <strong>url</strong>
+                                <span>Действующая ссылка на ресурс (обязательно https://)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Вкладка контактов -->
+                <div class="tab-content" id="contact-tab">
+                    <div class="contact-info">
+                        <div class="contact-header">
+                            <h3>📧 Добавление на основной сайт</h3>
+                            <p>Хотите чтобы ваш ресурс появился на основном сайте Хранилища?</p>
+                        </div>
+                        
+                        <div class="contact-details">
+                            <div class="contact-method">
+                                <div class="contact-icon">📧</div>
+                                <div class="contact-content">
+                                    <strong>Email администратора</strong>
+                                    <a href="mailto:roll3ogurec0@gmail.com" class="contact-link">
+                                        roll3ogurec0@gmail.com
+                                    </a>
+                                    <small>Тимофей</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="submission-guide">
+                            <h4>📋 Что отправить:</h4>
+                            <ul>
+                                <li>Название вашего ресурса</li>
+                                <li>Краткое описание</li>
+                                <li>Ссылку на сайт/ресурс</li>
+                                <li>Изображение (если есть)</li>
+                                <li>Ключевые теги/категории</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <h4>⚠️ Внимание</h4>
+                            <p>На основном сайте размещаются только проверенные и качественные ресурсы. Администратор оставляет за собой право отказать в добавлении без объяснения причин.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Футер -->
-<footer>
-    <div class="footer-container">
-        <div class="logo">
-            <span class="logo-icon">📁</span>
-            Хранилище
+    <footer>
+        <div class="footer-container">
+            <div class="logo">
+                <span class="logo-icon">📁</span>
+                Хранилище
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Политика конфиденциальности</a>
+                <a href="terms.html">Условия использования</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Хранилище с мета-тегами. Все права защищены.
+            </div>
         </div>
-        <div class="footer-links">
-            <a href="privacy.html">Политика конфиденциальности</a>
-            <a href="terms.html">Условия использования</a>
-        </div>
-        <div class="copyright">
-            &copy; 2025 Хранилище с мета-тегами. Все права защищены.
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <script>
         // Данные элементов
@@ -813,7 +1199,49 @@
             setupPagination();
             renderGeneralCategories();
             setupEventListeners();
+            setupTabs();
         });
+
+        // Настройка вкладок
+        function setupTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Убираем активный класс у всех кнопок и контента
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    // Добавляем активный класс текущей кнопке
+                    btn.classList.add('active');
+
+                    // Показываем соответствующий контент
+                    const tabId = btn.dataset.tab + '-tab';
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Улучшенное копирование кода
+            copyCodeBtn.addEventListener('click', () => {
+                const codeText = itemCodeTemplate.textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    const originalText = copyCodeBtn.textContent;
+                    copyCodeBtn.textContent = '✅ Скопировано!';
+                    copyCodeBtn.style.background = '#10B981';
+                    
+                    setTimeout(() => {
+                        copyCodeBtn.textContent = originalText;
+                        copyCodeBtn.style.background = '';
+                    }, 2000);
+                }).catch(() => {
+                    copyCodeBtn.textContent = '❌ Ошибка';
+                    setTimeout(() => {
+                        copyCodeBtn.textContent = '📋 Копировать';
+                    }, 2000);
+                });
+            });
+        }
 
         // Получение избранных элементов (первые 3)
         function getFeaturedItems() {
@@ -1031,18 +1459,6 @@
                 if (e.target === addItemModal) {
                     addItemModal.classList.remove('active');
                 }
-            });
-            
-            // Копирование кода
-            copyCodeBtn.addEventListener('click', () => {
-                const codeText = itemCodeTemplate.textContent;
-                navigator.clipboard.writeText(codeText).then(() => {
-                    const originalText = copyCodeBtn.textContent;
-                    copyCodeBtn.textContent = 'Код скопирован!';
-                    setTimeout(() => {
-                        copyCodeBtn.textContent = originalText;
-                    }, 2000);
-                });
             });
         }
     </script>
